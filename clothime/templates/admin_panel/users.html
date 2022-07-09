@@ -1,0 +1,68 @@
+{% extends 'admin_panel/home.html' %}
+
+{% block body %}
+
+<div class="col-sm-12 col-xl-6">
+    {% include 'user/alerts.html' %}
+    <div class="bg-light rounded h-100 p-4">
+        <form action="{% url 'a_user_search' %}" method="GET">
+            <div class="d-flex pb-2">
+        <input type="text" name="keyword" class="form-control" placeholder="Search" id="" style="width: 50%;">
+        <button type="submit" class="btn btn-primary px-4"><i class="fa fa-search"></i></button>
+    </div>
+    </form>
+        <h6 class="mb-4">Users Table</h6>
+        <h6>{{ user_count}} users found</h6>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Date Joined</th>
+                    <th scope="col">Last Login</th>
+                    <th scope="col">Is Admin</th>
+                    <th scope="col">Is Staff</th>
+                    <th scope="col">Is Active</th>
+                    <th scope="col">Is SuperAdmin</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if users %}
+                {% for x in users %}
+                <tr>
+                    <td>{{x.id}}</td>
+                    <td>{{x.first_name}}</td>
+                    <td>{{ x.last_name }}</td>
+                    <td>{{ x.username }}</td>
+                    <td>{{ x.email }}</td>
+                    <td>{{ x.phone_number }}</td>
+                    <td>{{ x.date_joined }}</td>
+                    <td>{{ x.last_login }}</td>
+                    <td>{{ x.is_admin }}</td>
+                    <td>{{ x.is_staff }}</td>
+                    <td>{{ x.is_active }}</td>
+                    <td>{{ x.is_superadmin }}</td>
+                    <td>{% if x.is_active %}
+                    <a href="{% url 'a_block_user' x.id %}"><button class="btn btn-danger">Block</button></a>
+                    {% else %}
+                    <a href="{% url 'a_unblock_user' x.id %}"><button class="btn btn-primary">UnBlock</button></a>
+                    {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <h3 class="text-center" style="color: red;">No Users Found !!</h3>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock body %}
+
+

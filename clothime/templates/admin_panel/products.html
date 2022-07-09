@@ -1,0 +1,65 @@
+{% extends 'admin_panel/home.html' %}
+{% block body %}
+
+<div class="col-sm-12 col-xl-6">
+    <div class="bg-light rounded h-100 p-4">
+        {% include 'user/alerts.html' %}
+        <form action="{% url 'a_product_search' %}" method="GET">
+            <div class="d-flex pb-2">
+        <input type="text" name="keyword" class="form-control" placeholder="Search" id="" style="width: 50%;">
+        <button type="submit" class="btn btn-primary px-4"><i class="fa fa-search"></i></button>
+    </div>
+    </form>
+        <div class="d-flex justify-content-between">
+        <h6 class="mb-4">Products Table</h6>
+        <a href="{% url 'a_add_product' %}"><button class="btn btn-success">Add Product</button></a>
+    </div>
+    <h5>{{products_count}}</h5>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Image1</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Is Available</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Modified Date</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if products %}
+                    
+                {% for x in products %}
+                <tr>
+                    <td>{{x.id}}</td>
+                    <td>{{x.product_name}}</td>
+                    <td>{{ x.slug }}</td>
+                    <td>{{ x.description }}</td>
+                    <td>{{ x.price }}</td>
+                    <td><img style="height: 6rem; width: 4rem;" src="{{ x.images.url }}"></td>
+                    <td>{{ x.stock }}</td>
+                    <td>{{ x.is_available }}</td>
+                    <td>{{ x.category }}</td>
+                    <td>{{ x.created_date }}</td>
+                    <td>{{ x.modified_date }}</td>
+                    <td><a href="{% url 'a_edit_product' x.id %}"><button class="btn btn-success">EDIT</button></a></td>
+                    <td><a href="{% url 'a_delete_product' x.id %}"><button class="btn btn-danger" onclick="return confirm('Are you sure to want to remove this item ?')">DELETE</button></a></td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <h3 class="text-center" style="color: red;">No Products found !</h3>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock body %}
+
+

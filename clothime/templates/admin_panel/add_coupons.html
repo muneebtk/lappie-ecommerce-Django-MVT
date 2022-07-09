@@ -1,0 +1,15 @@
+{% extends 'admin_panel/home.html' %}
+
+{% block body %}
+
+
+<div>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+     {{ form.as_p }}
+    <a href="{% url 'a_add_coupon' %} "> <input type="submit" class="btn btn-primary" value="Save"></a>
+    </form>
+</div>
+{% endblock body %}
+
+

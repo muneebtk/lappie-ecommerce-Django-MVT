@@ -1,0 +1,45 @@
+{% extends 'admin_panel/home.html' %}
+
+{% block body %}
+
+<div class="col-sm-12 col-xl-6">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Order Product Table</h6>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Order</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Variation</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Product Price</th>
+                    <th scope="col">Is Ordered</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Updated At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in order_product %}
+                <tr>
+                    <td>{{x.id}}</td>
+                    <td>{{x.order}}</td>
+                    <td>{{x.payment}}</td>
+                    <td>{{ x.user }}</td>
+                    <td>{{ x.product }}</td>
+                    <td>{{ x.variation }}</td>
+                    <td>{{ x.quantity }}</td>
+                    <td>{{ x.product_price }}</td>
+                    <td>{{ x.ordered }}</td>
+                    <td>{{ x.created_at }}</td>
+                    <td>{{ x.updated_at }}</td>    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock  %}

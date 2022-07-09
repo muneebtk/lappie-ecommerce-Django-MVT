@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="container pt-5" style="height: 100vh;">
+    <div class="d-flex justify-content-center ">
+        <div class="card" style="width: 22rem;">
+            <div class="card-body" style="width: 22rem;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    {% include 'user/alerts.html' %}
+    <h2 class="text-center">VERIFY OTP</h2><br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <div class="d-grid gap-2 col-6 mx-auto d-flex justify-content-center" >
+        <button class="btn btn-primary " type="submit" style="padding-left: 40px; padding-right:40px">Verify</button>
+    </div>
+    </form>
+    </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

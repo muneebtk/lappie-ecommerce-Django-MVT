@@ -1,0 +1,16 @@
+{% extends 'admin_panel/home.html' %}
+
+{% block body %}
+
+<div class="m-3">
+    <h2 class="text-center m-3">EDIT HOME CAROUSEL</h2><hr>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+     {{ form.as_p }}
+     <a href="{% url 'a_edit_home_carousel' carousel.id %}"><input type="submit" class="btn btn-primary" value="Save"></a>
+    </form>
+</div>
+
+{% endblock body %}
+
+

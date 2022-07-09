@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="d-flex justify-content-center align-items-center m-1">
+    <div class="card " style="width: 25rem;">
+        <div class="card-body"   style="width: 25rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <h2 class="text-center font-weight-bold">SIGNUP</h2><br>
+    {% include 'user/alerts.html' %}
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="">First Name</label>
+        {{ form.first_name }}
+        <label for="">Last Name</label>
+        {{ form.last_name }} 
+        <label for="">Phone Number</label>
+        {{ form.phone_number }} 
+        <label for="">Email</label>
+        {{ form.email }} 
+        <label for="">Password</label>
+        {{ form.password }} 
+        <label for="">Confirm Password</label>
+        {{ form.confirm_password }} <br>
+        <div class="d-grid col-6 mx-auto d-flex justify-content-center ">
+        <button class="btn btn-primary" type="submit" style="padding-right:40px; padding-left: 40px;">Signup</button></div><br>
+        <p class="text-danger">{{ form.email.errors }}</p>
+       <p class="text-danger"> {{ form.non_field_errors}}</p>
+       {{ form.validation_error}}
+        <p>Have an account? <a href="{% url 'login' %}">Login</a></p>
+    </form>
+    </div>
+    </div>
+</div>
+{% endblock  %}

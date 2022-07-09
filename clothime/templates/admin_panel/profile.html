@@ -1,0 +1,16 @@
+{% extends 'admin_panel/home.html' %}
+
+{% block body %}
+<div class="card m-4 contaniner-fluid text-center" style="height:100vh ; background-image:url('https://th.bing.com/th/id/R.d26d89c6a67840b69e5359b72568ed2a?rik=76keOGQhucd8zw&riu=http%3a%2f%2f1.bp.blogspot.com%2f-_b4ibdQb4Q8%2fTzkz2dik8SI%2fAAAAAAAAA20%2fbVcuGSZhVAM%2fs1600%2fprint-background-8.jpg&ehk=oGePIRtIBUNkDMQtaO9blkz5HLxPti558xqLjQ91tfY%3d&risl=&pid=ImgRaw&r=0');">
+    <u style="color: white;"><h2 class="text-center pt-4 text-white font-weight-bold">Profile</h2><br></u>
+    <div class="text-white">
+ <label for="">First Name : <b>{{ profile.first_name }} </b></label><br><br>
+ <label for="">Last Name : <b>{{ profile.last_name }} </b></label><br><br>
+ <label for="">UserName : <b>{{ profile.username }} </b></label><br><br>
+ <label for="">Email : <b>{{ profile.email }} </b></label><br><br>
+ <div class="d-flex justify-content-center"><a href="{% url 'a_home'  %}"><button class="btn btn-success text-white pr-5 pl-5">Go Back</button></a></div>
+</div>
+</div>
+ 
+
+{% endblock %}

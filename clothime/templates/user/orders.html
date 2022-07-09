@@ -1,0 +1,19 @@
+{% extends 'user/profile.html' %}
+
+{% block body %}
+<div class="card">
+    <div class="card-body">
+<h3 class="text-center">Total Orders</h3><hr>
+
+
+    {% if orders %}
+        {% for order in orders %}
+        <table>
+         <td> <img src="{{order.product.images.url }}" style="height: 4srem; width: 3rem;"></td>
+        {% endfor %}
+        </table>
+        
+    {% endif %}
+</div>
+</div>
+{% endblock %}

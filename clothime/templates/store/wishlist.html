@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+<div class="row product-categorie-box">
+  <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+          <div class="row">
+              {% if products %}
+            
+              {% for product in products %}
+                  
+              <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                  <div class="products-single fix pl-3" style="height: 500px; width:250px">
+                      <div class="box-img-hover">
+                          <div class="type-lb">
+                          </div>
+                         <a href="{{ product.product.get_url }}"> <img src="{{ product.product.images.url }}" class="img-fluid" alt="Image"></a>
+                      </div>
+                      <div class="why-text">
+                         <a href="{{ product.get_url }}"> <h4>{{ product.product.product_name }}</h4></a>
+                          <p><b>Rs. {{ product.product.price }}/-</b></p>
+                          <div class="d-flex justify-content-between">
+                         <a href="{{  product.product.get_url }}"> <button class="btn hvr-hover text-white btn-sm">Add to Cart</button></a>
+                          <a href="{% url 'remove_wishlist_item' product.id %}"><button class="btn hvr-hover text-white btn-sm">Remove</button></a>
+                      </div>
+                    </div>
+                      </div>
+                      </div>
+                      {% endfor %}
+                      {% else %}
+                      <div class="d-flex justify-content-center"><h1 class="">No Products Found!</h1></div>                                                    
+                      {% endif %}
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'admin_panel/home.html' %}
+
+{% block body %}
+
+
+<div>
+    <h2 class="text-center">ADD FEATURED PRODUCTS</h2><hr><br>
+    <form action="" method="POST">
+        {% csrf_token %}
+     {{ form.as_p }}
+    <a href="{% url 'a_add_featured_product' %}"><input type="submit" class="btn btn-primary" value="Save"></a>
+    </form>
+</div>
+{% endblock body %}
+
+
+

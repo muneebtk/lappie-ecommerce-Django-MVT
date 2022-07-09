@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>Lappie</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/lappie4.svg' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+  
+    {% block head %}
+        
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-md-center">
+                <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" > -->
+                    <div class="our-link"  style="height: 25px;">
+                        <div class="d-flex justify-content-center align-items-center">
+                          <ul>
+                            {% if user.id is None  %}
+                                <li><b class="text-white">Hi Guest</b></li>
+                                <li><a href="{% url 'login' %}">login</a></li>
+                                <li><a href="{% url 'register' %}">signin</a></li>
+                            {% else %}
+                                <li><b class="text-white">Hi {{ user.first_name }} !</b></li>
+                                <li><a href="{% url 'account' %}">My Account</a></li>
+                                <li><a href="{% url 'orders' %}">Orders</a></li>
+                                <li><a href="{% url 'logout' %}">logout</a></li>
+                            {% endif %}
+                          </ul>
+                        </div>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                    <!-- <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.jpg' %}" class="logo" alt=""></a> -->
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        {% for category in links %}
+                            
+                        <li class="nav-item active"><a class="nav-link" href="{{ category.get_url }}">{{ category.category_name }}</a></li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav d-flex justify-content-between">
+                    <ul>
+                    <li class="search"><a href="#"><i class="fa fa-search fa-lg fa-md-fa pl-3 pr-3"></i></a></li>
+                        <li><a href="{% url 'cart' %}">
+                            <i class="fa fa-shopping-cart fa-lg " ></i>
+                            <span class="badge">{{ cart_count }}</span>
+					  </a></li>
+                    <li class=""><a href="{% url 'wishlist' %}"><i class="far fa-heart fa-lg pl-3" style="color: red;"></i></a></li>
+                  </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+            </div>
+            <!-- End Side Menu -->
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <form action="{% url 'search' %}" method="GET" class="d-flex"><input type="text" class="form-control" placeholder="Search Products" name="keyword">
+                <!-- <div class=""><span class="input-group-addon close-search"><i class="fa fa-times"></i></span></div> -->
+                <button class="btn hvr-hover text-white">Search</button>
+              </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+    {% block body %}
+
+
+    {% endblock %}
+
+    <!-- Start Footer  -->
+    <footer>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>About Lappie</h4>
+                            <p>New innovating Products made us.
+                                </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link">
+                            <h4>Categories</h4>
+                            <ul>
+                                {% for category in links %}
+
+                                <li><a href="{{ category.get_url}}">{{ category.category_name}}</a></li>
+                                
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: calicut <br>kinfra park,<br> 673620 </p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone: 8592962536<a href=""></a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="">muhammedmuneeb3215@gmail.com</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
+
+    <!-- Start copyright  -->
+    <div class="footer-copyright">
+        <p class="footer-company">All Rights Reserved. &copy;  <a href="#">Lappie</a>
+            <a href=""></a></p>
+    </div>
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+    <!-- ALL JS FILES -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'js/jquery.superslides.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'js/inewsticker.js' %}"></script>
+    <script src="{% static 'js/bootsnav.js.' %}"></script>
+    <script src="{% static 'js/images-loded.min.js' %}"></script>
+    <script src="{% static 'js/isotope.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/baguetteBox.min.js' %}"></script>
+    <script src="{% static 'js/form-validator.min.js' %}"></script>
+    <script src="{% static 'js/contact-form-script.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

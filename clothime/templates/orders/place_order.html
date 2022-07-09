@@ -1,0 +1,130 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    
+
+<!-- Start All Title Box -->
+<style>
+  html,body{
+    max-width: 100%;
+    overflow-x:hidden ;
+  }
+</style>
+
+<div class="all-title-box " >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Place Order</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{%url 'cart'%}">Cart</a></li>
+                    <li class="breadcrumb-item active">Place Order</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+<div class="p-5 row">
+ <div class="card mt-3 col-md-12 col-lg-4">
+    <h5 class="card-header">Billing Address</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{ address.full_name }}</h5>
+      <p class="card-text">{{ address.email }} </p>
+      <p class="card-text">{{ address.full_address }} </p>
+      <p class="card-text">{{ address.city }},{{ address.state }},{{ address.contry}} </p>
+      <p class="card-text">Ph:{{ address.phone }}, Pin:{{ address.pincode }} </p>
+    </div>
+  </div>
+  <div class="card mt-5 col-md-12 col-lg-4">
+    <h5 class="card-header">Payment</h5>
+    <div class="card-body">
+      <h5 class="card-title">RazorPay</h5>
+    </div>
+  </div>
+  <div class="card mt-5 col-md-12 col-lg-4">
+    <h5 class="card-header">Review Product</h5>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <!-- <th>Image</th> -->
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    {% for cart_item in cart_items %} 
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- <td class="thumbnail-img">
+                        <a href="{{ cart_item.product.get_url }}">
+                    <img class="img-fluid" src="{{ cart_item.product.images.url }}" alt=""/>
+                </a>
+                  </td> -->
+                    <td class="name-pr text-muted-small">
+                      <a href="{{ cart_item.product.get_url }} " ><p >{{ cart_item.product.product_name }}</p></a>
+                        <p class="text-muted-small">
+                          {% if cart_item.variations.all %}
+                           {% for item in cart_item.variations.all %}
+                            {{ item.variation_category | capfirst }} : {{ item.variation_value }} 
+                           {% endfor %}
+                          {% endif %}
+                        </p>
+                      </td>
+                    <td class="quantity-bo  ">
+                       <label for="">{{ cart_item.quantity }} </label>
+                    </td>
+                    <td class="total-pr">
+                       <p>{{ cart_item.product.price }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cart_item.sub_total }}</p>
+                    </td>
+                </tr>
+              {% endfor %}
+           </tbody>
+        </table>
+    </div>
+  </div> 
+</div>
+<div class="row my-5b p-5">
+    <div class="col-lg-8 col-sm-12"></div>
+    <div class="col-lg-4 col-sm-12">
+        <div class="order-box">
+            <h3>Order summary</h3><hr>
+            <div class="d-flex">
+                <h4>Sub Total</h4>
+                <div class="ml-auto font-weight-bold"> {{ total }} </div>
+            </div>                        
+            <div class="d-flex">
+                <h4>Tax</h4>
+                <div class="ml-auto font-weight-bold">{{ tax }}</div>
+            </div>
+            <div class="d-flex">
+                <h4>Shipping Cost</h4>
+                <div class="ml-auto font-weight-bold"> Free </div>
+            </div>
+            <hr>
+            <div class="d-flex">
+              <h4>Discount</h4>
+              <div class="ml-auto font-weight-bold"> {{ discount }} </div>
+            </div>
+            <hr>
+            <div class="d-flex gr-total">
+                <h5>Grand Total</h5>
+                <div class="ml-auto h5"> {{ grand_total }} </div>
+            </div>
+            <hr> </div>
+            <form action="{% url 'payments' %}" method="GET">
+              <div class="col-12 d-flex shopping-box "><button class="ml-auto btn hvr-hover" type="submit"><a href="{% url 'payments' %}" >Prodeed to Pay</a> </button></div>
+          </form>
+    </div>
+</div>
+       
+
+{% endblock %}

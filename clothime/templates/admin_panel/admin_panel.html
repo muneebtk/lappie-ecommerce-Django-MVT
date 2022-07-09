@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="card container mt-4 mb-5" style="height: 100vh; background-image:url('https://th.bing.com/th/id/R.d26d89c6a67840b69e5359b72568ed2a?rik=76keOGQhucd8zw&riu=http%3a%2f%2f1.bp.blogspot.com%2f-_b4ibdQb4Q8%2fTzkz2dik8SI%2fAAAAAAAAA20%2fbVcuGSZhVAM%2fs1600%2fprint-background-8.jpg&ehk=oGePIRtIBUNkDMQtaO9blkz5HLxPti558xqLjQ91tfY%3d&risl=&pid=ImgRaw&r=0');">
+            <div class=" pt-3">
+              <form method="POST" action="{% url 'admin_panel' %}">
+                {% csrf_token %}
+                <h1 class="text-center text-white font-weight-bold">ADMIN</h1><hr>
+            <div class="form-group text-white">
+              <label for="exampleInputEmail1">Email </label>
+            <input type="text " name="email" class="form-control" >
+            </div>
+            <div class="form-group text-white">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" name="password" id="" class="form-control" >
+            </div>
+            <div class="d-flex justify-content-center pl-4">
+            <a href=""><button type="submit" class="btn btn-primary mt-4 mb-4 ">Submit</button></a></div>
+          </form>
+          {% include 'user/alerts.html' %}
+          </div>
+          </div>
+    </div>
+</body>
+</html>

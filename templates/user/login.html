@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container"style="height:100vh ;">
+    <div class="container d-flex justify-content-center pt-5 " >
+    <div class="card">
+        <div class="card-body" style="width: 22rem;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    {% if request.GET.command == 'verification' %}
+
+    <div class="container mx-auto alert alert-info text-center" role="alert" style="max-width:70%;" margin-top="100px;">
+    Thank you for registering with us.. we have sent a verification email to your email address, please verify the email[{{request.GET.email}}].
+    <br><br>
+    already verified? <a href="{% url 'login' %}">Login</a>
+    </div>
+    
+    {% else %}
+
+      <h1 class="d-flex justify-content-center font-weight-bold">LOGIN</h1><br><br>
+      {% include 'user/alerts.html' %}
+      <form action="" method="POST">
+          {% csrf_token %} 
+      <input type="email" class="form-control" placeholder="Enter Email" name="email"><br>    
+      <input type="password" class="form-control" placeholder="Enter Password" name="password"><br>  
+      <a href="{% url 'forgotpassword' %}" class="d-flex justify-content-end">Forgot Password?</a><br>
+      <div class="d-grid col-6 mx-auto justify-content-center">
+      <button class="btn btn-primary" type="submit" style="padding-right:40px; padding-left:40px;" >Login</button></button></div><br>
+      <p>Dont have an account? <a href="{% url 'register' %}">Signup</a></p>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,42 @@
+{% extends 'admin_panel/home.html' %}
+
+{% block body %}
+
+<div class="col-sm-12 col-xl-6">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Payment Table</h6>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">user</th>
+                    <th scope="col">Payment Id</th>
+                    <th scope="col">Amount Paid</th>
+                    <th scope="col">Is Paid</th>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in payment %}
+                <tr>
+                    <td>{{x.id}}</td>
+                    <td>{{x.user}}</td>
+                    <td>{{x.payment_id}}</td>
+                    <td>{{ x.amount_paid }}</td>
+                    <td>{{ x.paid }}</td>
+                    <td>{{ x.order_id }}</td>
+                    <td>{{ x.created_at }}</td>
+                    <td>{{ x.address_line_2 }}</td>
+                    <td>{{ x.country }}</td>
+                    <td>{{ x.state }}</td>
+                    <td>{{ x.city }}</td>
+                    <td>{{ x.pincode }}</td>    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock  %}

@@ -1,0 +1,59 @@
+{% extends 'admin_panel/home.html' %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="w-100" style="width:100vh">
+        {% include 'user/alerts.html' %}
+        <form action="{% url 'a_order_search' %}" method="GET">
+            <div class="d-flex pb-2" style="position: sticky; top:0;">
+        <input type="text" name="keyword" required class="form-control" id="" style="width: 50%;">
+        <button type="submit" class="btn btn-primary px-4"><i class="fa fa-search"></i></button>
+    </div>
+    </form>
+        <h6 class="mb-4">Orders Table</h6>
+        <table class="table table-striped w-100">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Order Number</th>
+                    <th scope="col">Order Total</th>
+                    <th scope="col">Tax</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Is Ordered</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Updated At</th>
+                    <th scope="col">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% if orders %}
+                {% for x in orders %}
+                <tr>
+                    <td>{{x.id}}</td>
+                    <td>{{x.user}}</td>
+                    <td>{{ x.address }}</td>
+                    <td>{{ x.payment }}</td>
+                    <td>{{ x.order_number }}</td>
+                    <td>{{ x.order_total }}</td>
+                    <td>{{ x.tax }}</td>
+                    <td>{{ x.status }}</td>
+                    <td>{{ x.is_ordered }}</td>
+                    <td>{{ x.created_at }}</td>
+                    <td>{{ x.updated_at }}</td>
+                    <td><a href="{% url 'a_view_order' x.id %}"><button class="btn btn-primary btn-sm">EDIT</button></a></td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <h3 class="text-center">No Orders Found !!</h3>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock  %}

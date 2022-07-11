@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% include 'user/alerts.html' %}
+
+    <!-- Start Slider -->
+    <div id="slides-shop" class="cover-slides">
+        <ul class="slides-container">
+            <li class="text-left">
+                <img src="{{ home_carousel1.image.url }}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20" style="color: white; text-shadow:2px 2px 4px #000000"><strong>{{home_carousel1.main_text}}</strong></h1>
+                            <p class="m-b-40 ml-4"style="color: white; text-shadow:2px 2px 4px #000000">{{home_carousel1.sub_text}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="{{home_carousel2.image.url}}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20" style="color: white; text-shadow:2px 2px 4px #000000"><strong>{{ home_carousel2.main_text}}</strong></h1>
+                            <p class="m-b-40"style="color: white; text-shadow:2px 2px 4px #000000">{{home_carousel2.sub_text}}<br> trends to see any changes in performance over time.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-right">
+                <img src="{{ home_carousel3.image.url}}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20" style="color: white; text-shadow:2px 2px 4px #000000"><strong>{{home_carousel3.main_text}}</strong></h1>
+                            <p class="m-b-40 mr-5"style="color: white; text-shadow:2px 2px 4px #000000">{{home_carousel3.sub_text}}</p>
+                            <!-- <p><a class="btn hvr-hover" href="#">Shop New</a></p> -->
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+     <div class="slides-navigation">
+            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    
+    <!-- End Slider -->
+
+    <!-- Start Categories  -->
+    <div class="categories-shop">
+        <div class="container">
+            <div class="row">
+              {% for category in links %} 
+                <div class="col-lg-3 col-md-3 col-sm-4 col-3" style="d-flex ">
+                 <div class="shop-cat-box">
+                      <img class="img-fluid" src="{{ category.category_image.url }} " alt="" >
+                       <a class="btn hvr-hover" href="{{ category.get_url }}">  {{ category.category_name }}</a>
+                    </div>
+                </div>
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- End Categories -->
+    <!-- <marquee behavior="scroll" direction="left">Here is some scrolling text... right to left!</marquee> -->
+<style>
+    .blink {
+        animation: blinker 1.5s linear infinite;
+        color: red;
+        font-family: sans-serif;
+    }
+    @keyframes blinker {
+        50% {
+            opacity: 0;
+        }
+    }
+    @media screen {
+        
+    }
+</style>
+    <marquee behavior="scroll" color="red" class="blink" direction="left">
+        <h4 class="text-danger">* Flat 150 off on your first Order order above 1000.   </h4>
+    </marquee>
+    <!-- featured Products  -->
+
+    <div class="products-box">
+        <div class="container">
+            <div class="row my-1 ">
+                <div class="col">
+                    <div class="title-all text-center">
+                        <h1>Featured Products</h1>
+                    </div>
+                    <div class="featured-products-box owl-carousel owl-theme m-3  ">
+                        {% for x in featured %}
+                        <div class="item m-3">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                  <img src="{{  x.product.images.url }} " class="img-fluid" alt="Image">                                   
+                                </div>
+                                <div class="why-text">
+                                    <h4>{{ x.product.product_name }}</h4>
+                                    <h5> {{ x.product.price }}</h5>
+                                    <div class="d-flex justify-content-end"><a class="cart  btn hvr-hover btn-sm text-light" href="{{ x.product.get_url }}">View Details  <i class="fa fa-eye"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="products-box">
+        <div class="container">
+          
+            <div class="row my-1">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1>New Arrivals</h1>
+                    </div>
+                    <div class="featured-products-box owl-carousel  owl-theme m-3">
+                        {% for x in new_arrivals %}
+                        <div class="item m-3">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                  <img src="{{ x.images.url }} " class="img-fluid" alt="Image">                                   
+                                </div>
+                                <div class="why-text">
+                                    <h4>{{ x.product_name }}</h4>
+                                    <h5> {{ x.price }}</h5>
+                                    <div class="d-flex justify-content-end"> <a class="cart  btn hvr-hover btn-sm text-light" href="{{ x.get_url }}">View Details  <i class="fa fa-eye"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Products  -->
+    
+    {% endblock %}
+
+    

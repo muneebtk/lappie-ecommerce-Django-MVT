@@ -1,0 +1,15 @@
+{% extends 'admin_panel/home.html' %}
+
+{% block body %}
+
+
+<div>
+    <form action="{% url 'a_edit_variation' variation.id %}" method="POST">
+        {% csrf_token %}
+     {{ form.as_p }}
+     <a href=""><input type="submit" class="btn btn-primary" value="Save"></a>
+    </form>
+</div>
+{% endblock body %}
+
+

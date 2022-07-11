@@ -267,7 +267,7 @@ def edit_account(request,id):
 def orders(request):
     order = Order.objects.filter(user=request.user,is_ordered=True)
     category = Category.objects.all()
-
+    orders = 0
     if order:
         orders = OrderProduct.objects.filter(user=request.user)
 

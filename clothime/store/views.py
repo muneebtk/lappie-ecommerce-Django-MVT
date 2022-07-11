@@ -262,6 +262,7 @@ def cart(request,total=0,quantity=0,cart_items=None):
                 total += (cart_item.product.price*cart_item.quantity)
                 quantity += cart_item.quantity
         tax = (2*total)/100
+        total1 = total
         grand_total = total+tax
         coupon = 0
         coupon1=0
@@ -284,9 +285,7 @@ def cart(request,total=0,quantity=0,cart_items=None):
                                 x.save()
                             else:
                                 pass
-
-                            discount = discount_amount
-                            grand_total = (total-discount)+tax
+                            grand_total = (total-discount_amount)+tax
                             
                         else:
                             grand_total = total+tax
@@ -317,7 +316,8 @@ def cart(request,total=0,quantity=0,cart_items=None):
         'grand_total': grand_total, 
         'coupon':coupon,
         'coupon1':coupon1,
-        'discount':discount,
+        'discount':discount_amount,
+        'total1':total1,
     }
 
     return render(request,'store/cart.html',context)

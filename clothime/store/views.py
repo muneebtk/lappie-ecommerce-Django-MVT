@@ -262,10 +262,8 @@ def cart(request,total=0,quantity=0,cart_items=None):
                 total += (cart_item.product.price*cart_item.quantity)
                 quantity += cart_item.quantity
         tax = (2*total)/100
-        total1 = total
         grand_total = total+tax
         coupon = 0
-        coupon1=0
         if request.method == 'POST':
             if 'code' in request.POST:
                 if Order.objects.filter(user=request.user,is_ordered ="True").exists():
@@ -317,7 +315,6 @@ def cart(request,total=0,quantity=0,cart_items=None):
         'coupon':coupon,
         'coupon1':coupon1,
         'discount':discount_amount,
-        'total1':total1,
     }
 
     return render(request,'store/cart.html',context)

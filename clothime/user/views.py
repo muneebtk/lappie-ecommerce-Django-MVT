@@ -232,8 +232,7 @@ def account(request):
     order = Order.objects.filter(user=request.user,is_ordered=True)
     category = Category.objects.all()
     if order:
-        orders = OrderProduct.objects.filter(user=request.user)
-
+        orders = OrderProduct.objects.filter(user=request.user,is_ordered=True)
         count = orders.count()
     else:
         pass
@@ -265,11 +264,13 @@ def edit_account(request,id):
     return render(request,'user/edit_account.html',context)
 
 def orders(request):
+    order = 0
     order = Order.objects.filter(user=request.user,is_ordered=True)
     category = Category.objects.all()
     orders = 0
+    count = 0
     if order:
-        orders = OrderProduct.objects.filter(user=request.user)
+        orders = OrderProduct.objects.filter(user=request.user,ordered=True)
 
         count = orders.count()
     else:

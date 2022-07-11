@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="card mt-4 mb-5 text-white" style="height: 100vh; background-image:url('https://th.bing.com/th/id/R.d26d89c6a67840b69e5359b72568ed2a?rik=76keOGQhucd8zw&riu=http%3a%2f%2f1.bp.blogspot.com%2f-_b4ibdQb4Q8%2fTzkz2dik8SI%2fAAAAAAAAA20%2fbVcuGSZhVAM%2fs1600%2fprint-background-8.jpg&ehk=oGePIRtIBUNkDMQtaO9blkz5HLxPti558xqLjQ91tfY%3d&risl=&pid=ImgRaw&r=0');">
             <h1 class="text-center mt-4">0RDER DETAILS</h1><hr>
-            <div class=" pt-1 text-white text-center">
+            <div class=" pt-1 text-center">
               <form action="{% url 'a_view_order' order.id %}" method="POST">
                 {% csrf_token %}
                 <label for="">Id :</label>

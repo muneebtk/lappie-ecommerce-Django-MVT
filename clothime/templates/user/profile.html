@@ -17,7 +17,7 @@
     <div class="row">
             <div class="col-lg-4">
                <div class="profile-card-4 z-depth-3">
-                <div class="card mx-4">
+                <div class="mx-4">
                   <div class="card-body text-center bg-primary rounded-top">
                    <div class="user-box">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar" style="width: 100px; height:100px;">
@@ -85,11 +85,12 @@
                 <div class="card-body">
                 
                 {% block body %}                
-                <div class="card">
+                <div class="">
                     <div class="bg-light rounded h-100 p-4">
                         <h6 class="mb-4">Your Orders</h6>
                         <p>Total Orders :{{ count }}</p>
                         {% if order %}
+                        <div class="card">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -102,7 +103,7 @@
                                 </tr>
                             </thead>
                             <tbody>   
-                                {% for x in Orders %}
+                                {% for x in orders %}
                                 <tr>                                        
                                     <td><img style="height: 4srem; width: 3rem;" src="{{ x.product.images.url }}" alt=""></td>
                                     <td>{{x.product.product_name }}</td>
@@ -114,6 +115,7 @@
                                 {% endfor %}
                                 </tbody>
                                 </table>
+                              </div>
                                 {% else %}
                         <h3 class="text-center">No Orders Found !</h3>
                         {% endif %}

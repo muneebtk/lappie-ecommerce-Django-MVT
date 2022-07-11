@@ -540,7 +540,7 @@ def a_add_coupon(request):
     context = {
         'form':form,
     }
-    return render(request,'admin_panel/add_coupon.html',context)
+    return render(request,'admin_panel/add_coupons.html',context)
 
 @user_passes_test(lambda u:u in acc,login_url='home')            
 def a_delete_coupon(request,id):

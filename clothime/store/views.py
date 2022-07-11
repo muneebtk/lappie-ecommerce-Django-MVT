@@ -1,5 +1,6 @@
 
 from django.shortcuts import get_object_or_404, redirect, render
+from clothime.user.models import user
 from orders.models import Address
 
 from store.forms import AddressForm
@@ -275,16 +276,20 @@ def cart(request,total=0,quantity=0,cart_items=None):
                         coupon = Coupons.objects.get(coupon_name=code)
                         limit=coupon.limit
                         discount_amount = coupon.discount_amount
-                        x = CouponUser()
-                        x.cur_user = request.user
-                        x.coupon = coupon
-                        if CouponUser.objects.filter(coupon=coupon).exists():
-                            pass
-                        else:
-                            x.save()
                         if total >= limit:
-                            pass
+                            if not CouponUser.objects.filter(user=request.user).exists():
+                                x = CouponUser()
+                                x.cur_user = request.user
+                                x.coupon = coupon
+                                x.save()
+                            else:
+                                pass
+
+                            discount = discount_amount
+                            grand_total = (total-discount)+tax
+                            
                         else:
+                            grand_total = total+tax
                             messages.error(request,f'Buy for above "{coupon.limit}" to get the offer.')
                             return redirect('cart')
                     else:
@@ -296,18 +301,9 @@ def cart(request,total=0,quantity=0,cart_items=None):
             pass
         coupon1 = Coupons.objects.all()
         tax = (2*total)/100
-        grand_total = int(total+tax)
+        grand_total = int(grand_total)
 
-        coup=CouponUser.objects.filter(cur_user=request.user)
 
-        if coup:
-            for x in coup:
-                discount = x.coupon.discount_amount
-                grand_total = (total-discount)+tax
-
-        else:
-            discount = 0
-            grand_total = total+tax
         
         
     except ObjectDoesNotExist:

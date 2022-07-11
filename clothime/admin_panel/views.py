@@ -155,8 +155,10 @@ def a_featured_product(request):
 @user_passes_test(lambda u:u in acc,login_url='home')
 def a_variation(request):
     variation = Variation.objects.all()
+    count = variation.count()
     context = {
-        'variation':variation
+        'variation':variation,
+        'count':count,
     }
     return render(request,'admin_panel/variation.html',context)
 
@@ -503,20 +505,20 @@ def a_product_search(request):
 
 @user_passes_test(lambda u:u in acc,login_url='home')            
 def a_variation_search(request):
-    variation_count = 0
-    variation_search = 0
+    count = 0
+    variation = 0
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
-            variation_search = Variation.objects.order_by('id').filter(Q(product__icontains=keyword)|Q(variation_value__icontains=keyword))
-            variation_count = variation_search.count()
+            variation = Variation.objects.order_by('id').filter(Q(product__icontains=keyword)|Q(variation_value__icontains=keyword))
+            count = variation.count()
         else:
             pass
     else:
         pass
     context = {
-        'variation_search':variation_search,
-        'variation_count':variation_count,
+        'variation':variation,
+        'count':count,
     }
     return render(request,'admin_panel/variation.html',context)
 

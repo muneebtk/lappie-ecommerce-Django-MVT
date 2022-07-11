@@ -1,3 +1,4 @@
+from itertools import product
 from django.shortcuts import redirect, render
 from category.models import Category
 from store.models import Coupons
@@ -313,7 +314,7 @@ def a_delete_variation(request,id):
     try:
         variation = Variation.objects.get(id=id)
         variation.delete()
-        messages.success(request,f'Variation { variation.variation_value }is removes from { variation.product }.')
+        messages.success(request,f'Variation "{ variation.variation_value }" is removes from { variation.product }.')
         return redirect(a_variation)
     except ObjectDoesNotExist:
         messages.error(request,'Something went wrong.. Please try again')
@@ -324,14 +325,20 @@ def a_add_variation(request):
     form = VariationForm()
     if request.method == 'POST':
         form = VariationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            variation = Variation.objects.order_by('-created_date').all()[0]
-            messages.success(request,f'Variation "{ variation.variation_value }" added for "{ variation.product }"successfully..')
+        product = request.POST['product']
+        variation_value = request.POST['variation_value']
+        if Variation.objects.filter(product=product,variation_value=variation_value).exists():
+            messages.error(request,'The variation is already exists.')
             return redirect(a_variation)
         else:
-            messages.error(request,'Something went wrong, Please try again..')
-            return redirect(a_variation)
+            if form.is_valid():
+                form.save()
+                variation = Variation.objects.order_by('-created_date').all()[0]
+                messages.success(request,f'Variation "{ variation.variation_value }" added for "{ variation.product }"successfully..')
+                return redirect(a_variation)
+            else:
+                messages.error(request,'Something went wrong, Please try again..')
+                return redirect(a_variation)
     else:
         form = VariationForm()
         context = {
@@ -345,13 +352,19 @@ def a_edit_variation(request,id):
     form = VariationForm(instance=variation)
     if request.method == 'POST':
         form = VariationForm(request.POST,instance=variation)
-        if form.is_valid():
-            form.save()
-            messages.success(request,f'Variation details has been chaged for "{ variation.product}" ..')
+        variation_value = variation.variation_value
+        product = variation.product
+        if Variation.objects.filter(product=product,variation_value=variation_value).exists():
+            messages.error(request,'The variation is already exists.')
             return redirect(a_variation)
         else:
-            messages.error(request,'Something went wrong, Please try again..!')
-            return redirect(a_variation)
+            if form.is_valid():
+                form.save()
+                messages.success(request,f'Variation details has been chaged for "{ variation.product}" ..')
+                return redirect(a_variation)
+            else:
+                messages.error(request,'Something went wrong, Please try again..!')
+                return redirect(a_variation)
     else:
         pass
     context={
@@ -536,7 +549,7 @@ def a_add_coupon(request):
         else:
             messages.error(request,'Something goes wrong..!')
             return redirect(a_coupons)
-    
+    form = CouponsForm()
     context = {
         'form':form,
     }

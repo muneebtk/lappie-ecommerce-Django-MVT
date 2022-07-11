@@ -528,7 +528,7 @@ def a_add_coupon(request):
     form = CouponsForm()
     if request.method == 'POST':
         form = CouponsForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             coupon = Coupons.objects.order_by('-created_at').all()[0]
             messages.success(request,f'Coupon added"{ coupon.coupon_name }" Successfully.')
@@ -538,9 +538,9 @@ def a_add_coupon(request):
             return redirect(a_coupons)
     
     context = {
-        'form':form
+        'form':form,
     }
-    return render(request,'admin_panel/add_coupons.html',context)
+    return render(request,'admin_panel/add_coupon.html',context)
 
 @user_passes_test(lambda u:u in acc,login_url='home')            
 def a_delete_coupon(request,id):
@@ -612,6 +612,27 @@ def a_delete_home_carousel(request,id):
     except:
         messages.error(request,'Something goes wrong..please try again.!')
         return redirect(a_home_carousel)
+
+def a_edit_coupon(request,id):
+    coupon = Coupons.objects.get(id=id)
+    form= CouponsForm(instance=coupon)
+    if request.method == 'POST':
+        form = CouponsForm(request.POST,instance=coupon)
+        if form.is_valid():
+            form.save()
+            messages.success(request,f'Changes for "{coupon.coupon_name}" added')
+            return redirect(a_coupons)
+        else:
+            messages.error(request,'Something goes wrong.please try again.!')
+            return redirect(a_coupons)
+    else:
+        pass
+    context = {
+        'form':form,
+        'coupon':coupon,
+    }
+    return render(request,'admin_panel/edit_coupon.html',context)
+
 
 
 

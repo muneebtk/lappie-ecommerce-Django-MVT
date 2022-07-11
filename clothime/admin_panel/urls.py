@@ -42,6 +42,8 @@ urlpatterns = [
     path('a_add_home_carousel/',views.a_add_home_carousel,name='a_add_home_carousel'),
     path('a_order_search/',views.a_order_search,name='a_order_search'),
     path('a_product_search/',views.a_product_search,name='a_product_search'),
+    path('a_edit_coupon/<int:id>/',views.a_edit_coupon,name='a_edit_coupon'),
+
 
 
 ]

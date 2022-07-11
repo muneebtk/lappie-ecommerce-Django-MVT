@@ -282,8 +282,8 @@ def cart(request,total=0,quantity=0,cart_items=None):
                             pass
                         else:
                             x.save()
-                        if grand_total >= limit:
-                            total -= discount_amount 
+                        if total >= limit:
+                            pass
                         else:
                             messages.error(request,f'Buy for above "{coupon.limit}" to get the offer.')
                             return redirect('cart')

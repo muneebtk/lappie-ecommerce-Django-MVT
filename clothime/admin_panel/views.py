@@ -529,11 +529,10 @@ def a_add_coupon(request):
     if request.method == 'POST':
         form = CouponsForm(request.POST)
         if form.is_valid:
-            if Coupons.objects.filter():
-                form.save()
-                coupon = Coupons.objects.order_by('-created_at').all()[0]
-                messages.success(request,f'Coupon added"{ coupon.coupon_name }" Successfully.')
-                return redirect(a_coupons)
+            form.save()
+            coupon = Coupons.objects.order_by('-created_at').all()[0]
+            messages.success(request,f'Coupon added"{ coupon.coupon_name }" Successfully.')
+            return redirect(a_coupons)
         else:
             messages.error(request,'Something goes wrong..!')
             return redirect(a_coupons)

@@ -503,24 +503,6 @@ def a_product_search(request):
     }
     return render(request,'admin_panel/products.html',context)
 
-# @user_passes_test(lambda u:u in acc,login_url='home')            
-# def a_variation_search(request):
-#     count = 0
-#     variation = 0
-#     if 'keyword' in request.GET:
-#         keyword = request.GET['keyword']
-#         if keyword:
-#             variation = Variation.objects.order_by('id').filter(Q(product__icontains=keyword)|Q(variation_value__icontains=keyword))
-#             count = variation.count()
-#         else:
-#             pass
-#     else:
-#         pass
-#     context = {
-#         'variation':variation,
-#         'count':count,
-#     }
-#     return render(request,'admin_panel/variation.html',context)
 
 @user_passes_test(lambda u:u in acc,login_url='home')            
 def a_coupons(request):

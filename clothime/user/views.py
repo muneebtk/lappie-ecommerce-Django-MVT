@@ -226,6 +226,7 @@ def resetpassword(request):
 def account(request):
     orders = 0
     count = 0
+    order = 0
     current_user=request.user
     user1=user.objects.get(email=current_user)
     order = Order.objects.filter(user=request.user,is_ordered=True)

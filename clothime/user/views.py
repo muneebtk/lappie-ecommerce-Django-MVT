@@ -230,9 +230,6 @@ def account(request):
     user1=user.objects.get(email=current_user)
     order = Order.objects.filter(user=request.user,is_ordered=True)
     category = Category.objects.all()
-
-
-
     if order:
         orders = OrderProduct.objects.filter(user=request.user)
 

@@ -2,16 +2,16 @@
 {% block body %}
   
 
-<div class="card" style="width: 22rem;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+<div class="" >
     <div class=" pt-3">
       <form method="POST" action="">
         {% csrf_token %}
-        <h1 class="text-center text-dark font-weight-bold">Profile Edit</h1><hr>
-    <div class="form-group text-white">
+        <h1 class="text-center text-dark font-weight-bold">Edit Profile</h3><hr>
+    <div class="form-group mx-3">
       <label for="exampleInputEmail1">First Name</label>
     {{ form.first_name }}
     </div>
-    <div class="form-group text-white">
+    <div class="form-group mx-3">
       <label for="exampleInputPassword1">Last Name</label>
       {{ form.last_name }}
     </div>

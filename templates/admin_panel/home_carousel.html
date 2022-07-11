@@ -2,14 +2,14 @@
 
 {% block body %}
 
-<div class="col-sm-12 col-xl-6">
+<div class="container-fluid">
     <form class="d-none d-md-flex ms-4">
         <input class="form-control border-0" type="search" placeholder="Search">
     </form>
     {% include 'user/alerts.html' %}
     <div class="bg-light rounded h-100 p-4">
         <div class="d-flex justify-content-between">
-        <h6 class="mb-4">CartItem Table</h6>
+        <h6 class="mb-4">Home Carousel Table</h6>
         <a href="{% url 'a_add_home_carousel' %}"><button class="btn btn-success">ADD CAROUSEL</button></a>
     </div>
         <table class="table table-striped">

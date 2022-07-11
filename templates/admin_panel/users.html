@@ -2,9 +2,9 @@
 
 {% block body %}
 
-<div class="col-sm-12 col-xl-6">
+<div class="contanier-fluid">
     {% include 'user/alerts.html' %}
-    <div class="bg-light rounded h-100 p-4">
+    <div class="h-100 p-4">
         <form action="{% url 'a_user_search' %}" method="GET">
             <div class="d-flex pb-2">
         <input type="text" name="keyword" class="form-control" placeholder="Search" id="" style="width: 50%;">

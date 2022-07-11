@@ -3,7 +3,8 @@
 {% block body %}
 
 
-<div>
+<div class="container">
+    <h3>ADD CATEGORY</h3><hr>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
      {{ form.as_p }}

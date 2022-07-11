@@ -3,7 +3,8 @@
 {% block body %}
 
 
-<div>
+<div class="container">
+    <h3>EDIT VARIATION</h3><hr>
     <form action="{% url 'a_edit_variation' variation.id %}" method="POST">
         {% csrf_token %}
      {{ form.as_p }}

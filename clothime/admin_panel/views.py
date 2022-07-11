@@ -419,7 +419,7 @@ def a_add_featured_product(request):
         if form.is_valid():
             product = request.POST['product']
             if FeaturedProduct.objects.filter(product=product).exists():
-                messages.success(request,f'The product "{product}" already exist in featured products')
+                messages.error(request,f'The product "{product}" already exist in featured products')
                 return redirect(a_featured_product)
             else:
                 form.save()

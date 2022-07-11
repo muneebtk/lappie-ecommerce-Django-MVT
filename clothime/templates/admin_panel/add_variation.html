@@ -3,8 +3,9 @@
 {% block body %}
 
 
-<div>
-    <form action="" method="POST" enctype="multipart/form-data">
+<div class="container">
+    <h3>ADD VARIATION</h3><hr>
+    <form action="" method="POST">
         {% csrf_token %}
      {{ form.as_p }}
     <a href="{% url 'a_add_variation' %} "> <input type="submit" class="btn btn-primary" value="Save"></a>

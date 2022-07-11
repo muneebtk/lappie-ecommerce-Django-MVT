@@ -253,11 +253,11 @@ def a_add_category(request):
         form = CategoryForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            if Product.objects.all().exists(): 
+            try:
                 product = Product.objects.order_by('-created_date').all()[0]
                 messages.success(request,f'Category {product.category} added for "{ product.product}" ..')
                 return redirect('a_category')
-            else:
+            except:
                 pass
         else:
             messages.error(request,'something went wrong..please try again..')

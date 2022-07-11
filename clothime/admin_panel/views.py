@@ -167,7 +167,7 @@ def a_variation(request):
 def a_payment(request):
     payment = Payment.objects.order_by('-id').all()
     context = {
-        'payment':payment
+        'payment':payment,
     }
     return render(request,'admin_panel/payment.html',context)
 

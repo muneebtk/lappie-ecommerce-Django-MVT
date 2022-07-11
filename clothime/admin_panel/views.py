@@ -503,6 +503,8 @@ def a_product_search(request):
 
 @user_passes_test(lambda u:u in acc,login_url='home')            
 def a_variation_search(request):
+    variation_count = 0
+    variation_search = 0
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
@@ -627,6 +629,7 @@ def a_delete_home_carousel(request,id):
     except:
         messages.error(request,'Something goes wrong..please try again.!')
         return redirect(a_home_carousel)
+
 
 
 

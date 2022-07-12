@@ -1,6 +1,5 @@
 
 from django.shortcuts import get_object_or_404, redirect, render
-from clothime.user.models import user
 from orders.models import Address
 
 from store.forms import AddressForm
@@ -264,6 +263,7 @@ def cart(request,total=0,quantity=0,cart_items=None):
         tax = (2*total)/100
         grand_total = total+tax
         coupon = 0
+        discount_amount = 0
         if request.method == 'POST':
             if 'code' in request.POST:
                 if Order.objects.filter(user=request.user,is_ordered ="True").exists():
@@ -276,7 +276,7 @@ def cart(request,total=0,quantity=0,cart_items=None):
                         limit=coupon.limit
                         discount_amount = coupon.discount_amount
                         if total >= limit:
-                            if not CouponUser.objects.filter(user=request.user).exists():
+                            if not CouponUser.objects.filter(cur_user=request.user).exists():
                                 x = CouponUser()
                                 x.cur_user = request.user
                                 x.coupon = coupon
@@ -300,9 +300,6 @@ def cart(request,total=0,quantity=0,cart_items=None):
         tax = (2*total)/100
         grand_total = int(grand_total)
 
-
-        
-        
     except ObjectDoesNotExist:
         pass
     

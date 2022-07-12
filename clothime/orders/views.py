@@ -37,7 +37,7 @@ def place_order(request,total=0, quantity=0):
 
     else:
         grand_total = total+tax
-
+   
 
     address = 0
     orders = 0

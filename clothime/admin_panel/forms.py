@@ -1,7 +1,6 @@
 from django import forms
 from category.models import Category
 from orders.models import Order
-from user.models import user
 
 from store.models import FeaturedProduct, Product, Variation,Coupons,HomeCarousel
 
@@ -17,17 +16,17 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = '__all__'
 
-class AdminForm(forms.Form):
-    class Meta:
-        model = user
-        fields = ['email','password']
+# class AdminForm(forms.Form):
+#     class Meta:
+#         model = user
+#         fields = ['email','password']
     
-    email = forms.EmailField(widget = forms.EmailInput(attrs={
-        'class':'form-control',
-        }))
-    password = forms.CharField(widget = forms.PasswordInput(attrs={
-        'class':'form-control',
-        }))
+#     email = forms.EmailField(widget = forms.EmailInput(attrs={
+#         'class':'form-control',
+#         }))
+#     password = forms.CharField(widget = forms.PasswordInput(attrs={
+#         'class':'form-control',
+#         }))
 
 class VariationForm(forms.ModelForm):
     class Meta:

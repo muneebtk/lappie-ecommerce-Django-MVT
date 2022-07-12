@@ -107,7 +107,7 @@
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Total Sale</p>
-                                <h6 class="mb-0">{{ amount }}</h6>
+                                <h6 class="mb-0">₹{{ amount }}</h6>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                             <div class="ms-3">
                                 <p class="mb-2">Today sale </p>
                                 {% if today_sales_sum %}
-                                <h6 class="mb-0"> {{ today_sales_sum }}</h6>
+                                <h6 class="mb-0"> ₹{{ today_sales_sum }}</h6>
                                 {% else %}
                                 <h6 class="mb-0"></h6>
                                 {% endif %}
@@ -148,7 +148,7 @@
                             <div class="ms-3">
                                 <p class="mb-2">Yesterday Sale</p>
                                 {% if yesterday_sales_sum %}
-                                <h6 class="mb-0">{{ yesterday_sales_sum }}</h6>
+                                <h6 class="mb-0">₹{{ yesterday_sales_sum }}</h6>
                                 {% else %}
                                 <h6 class="mb-0">0</h6>
                                 {% endif %}

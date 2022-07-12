@@ -342,12 +342,16 @@ def add_wishlist(request,product_id):
     return redirect('wishlist')
 
 def remove_wishlist_item(request,product_id):
-    user=request.user
-    product = Wishlist.objects.get(id=product_id)
-    product.delete()
-    return redirect('wishlist')
+    try:
+        product = Wishlist.objects.get(id=product_id)
+        product.delete()
+        return redirect('wishlist')
+    except:
+        return redirect('wishlist')
 
 def search(request):
+    products = 0
+    product_count = 0
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:

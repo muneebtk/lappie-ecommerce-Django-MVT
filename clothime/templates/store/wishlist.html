@@ -1,12 +1,31 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                {% if 'search' in request.path %}
+                <h2>Search Result</h2>    
+                {% else %}
+                <h2>Shop</h2>
+                {% endif %}
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Shop</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
 <div class="row product-categorie-box">
   <div class="tab-content">
+    {% if products %}  
+
       <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
-          <div class="row">
-              {% if products %}
+        <div class="row">
             
               {% for product in products %}
                   
@@ -28,14 +47,18 @@
                       </div>
                       </div>
                       {% endfor %}
-                      {% else %}
-                      <div class="d-flex justify-content-center"><h1 class="">No Products Found!</h1></div>                                                    
-                      {% endif %}
+                      
                   </div>
+                 
               </div>
+              {% else %}
+              <div class="d-flex justify-content-center flex-column align-items-center">
+              <h2  class="">No Products Found!</h2>                                                    
+            <img src="https://media.istockphoto.com/vectors/empty-shopping-bag-icon-online-business-vector-icon-template-vector-id861576608?k=20&m=861576608&s=612x612&w=0&h=UgHaPYlYrsPTO6BKKTzizGQqFgqEnn7eYK9EOA16uDs=" alt="" style="width: 50%; height:70%">  
+            </div>
+              {% endif %}
+            </div>
           </div>
       </div>
-    </div>
-
-
+      
 {% endblock %}

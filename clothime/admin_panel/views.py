@@ -1,4 +1,3 @@
-from itertools import product
 from django.shortcuts import redirect, render
 from category.models import Category
 from store.models import Coupons
@@ -9,7 +8,7 @@ from user.models import user
 from store.models import FeaturedProduct, Product,Variation
 from django.contrib.auth import logout
 from django.contrib import messages,auth
-from . forms import CategoryForm, CouponsForm, FeaturedProductForm, OrderForm, ProductForm,AdminForm, VariationForm,HomeCarouselForm
+from . forms import CategoryForm, CouponsForm, FeaturedProductForm, OrderForm, ProductForm, VariationForm,HomeCarouselForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Q
@@ -24,32 +23,6 @@ from django.db.models import Sum
 
 acc = user.objects.filter(is_superadmin=True)
 
-@user_passes_test(lambda u:u in acc,login_url='home')
-def admin_panel(request):
-    form = AdminForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            email = request.POST['email']
-            password = request.POST['password']
-            user = auth.authenticate(email=email,password=password)
-            if user is not None:
-                if user.is_superadmin:
-                    auth.login(request,user)
-                    # email = request.POST['email']
-                    request.session['email'] = email
-                    messages.success(request,'Successfully logged in..!')
-                    return redirect('a_home')
-                else:
-                    messages.error(request,'Sorry, You are not an admin..!')
-                    return redirect('home')
-            else:
-                messages.error(request,'Please enter valid credentials..!')
-                return redirect('admin_panel')
-        else:
-            messages.error(request,'Something goes wrong..')
-            return redirect('admin_panel')
-
-    return render(request,'admin_panel/admin_panel.html')
 
 @user_passes_test(lambda u:u in acc,login_url='home')
 def a_home(request):

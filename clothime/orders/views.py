@@ -38,7 +38,6 @@ def place_order(request,total=0, quantity=0):
     else:
         grand_total = total+tax
    
-
     address = 0
     orders = 0
     if request.method == 'POST':
@@ -100,19 +99,12 @@ def payments(request):
         coup = CouponUser.objects.get(cur_user=request.user)
         discount = coup.coupon.discount_amount
         grand_total = int((total-discount)+tax)
+        coup.delete()
     else:
         grand_total = int(total+tax)
-    c_user = Order.objects.filter(user=request.user,is_ordered=True)
     
-    if c_user :
-        c = CouponUser.objects.filter(cur_user=request.user)
-        c.delete()
-    else:
-        pass
-
     # grand_total = int(total + tax) * 100
     amount = grand_total*100
-
 
 
     # RazorPay

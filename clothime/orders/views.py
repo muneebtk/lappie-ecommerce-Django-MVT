@@ -33,7 +33,7 @@ def place_order(request,total=0, quantity=0):
     if coup:
         for x in coup:
             discount = x.coupon.discount_amount
-            grand_total = (total-discount)+tax
+        grand_total = (total-discount)+tax
 
     else:
         grand_total = total+tax

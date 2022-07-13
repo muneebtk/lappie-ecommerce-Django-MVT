@@ -92,32 +92,34 @@
               </form>
             </div>
             <!-- related_product -->
-        <div class="products-box">
-          <div class="container">
-            <div class="row my-5">
-                <div class="col-lg-12">
-                    <div class="title-all text-center">
-                        <h1>Related Products</h1>
-                    </div>
-                    <div class="featured-products-box owl-carousel owl-theme">
-                        {% for pro in related_product %}
-                        <div class="item">
-                            <div class="products-single fix" >
-                                <div class="box-img-hover">
-                                  <img src="{{  pro.images.url }} " class="img-fluid" alt="Image">
+            <div class="products-box col-12">
+                <div class="container">
+                  
+                    <div class="row my-1">
+                        <div class="col-lg-12 col-12">
+                            <div class="title-all text-center">
+                                <h1>Related Products</h1>
+                            </div>
+                            <div class="featured-products-box owl-carousel  owl-theme m-3">
+                                {% for pro in related_product %}
+                                <div class="item m-3">
+                                    <div class="products-single fix">
+                                        <div class="box-img-hover">
+                                          <img src="{{ pro.images.url }} " class="img-fluid" alt="Image">                                   
+                                        </div>6
+                                        <div class="why-text">
+                                            <h4>{{ pro.product_name }}</h4>
+                                            <h5> {{ pro.price }}</h5>
+                                            <div class="d-flex justify-content-end"> <a class="cart  btn hvr-hover btn-sm text-light" href="{{ pro.get_url }}">View Details  <i class="fa fa-eye"></i></a></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="why-text">
-                                    <h4>{{ pro.product_name }}</h4>
-                                    <h5> {{ pro.price }}</h5>
-                                    <div class="d-flex justify-content-end"> <a class="cart  btn hvr-hover btn-sm text-light" href="{{ product.get_url }}">View Details  <i class="fa fa-eye"></i></a></div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
-                 </div>
-               </div>
-              </div>
+        
+                </div>
             </div>
         </div>
     </div>

@@ -20,6 +20,7 @@
 </div>
 
 <div class="container">
+  <h2 class="text-center">Wishlist</h2><hr>
 <div class="row product-categorie-box">
   <div class="tab-content">
     {% if products %}  
@@ -29,7 +30,7 @@
             
               {% for product in products %}
                   
-              <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+              <div class="col-6 col-md-6 col-lg-3 col-xl-3">
                   <div class="products-single fix pl-3" style="height: 500px; width:250px">
                       <div class="box-img-hover">
                           <div class="type-lb">
@@ -47,9 +48,7 @@
                       </div>
                       </div>
                       {% endfor %}
-                      
                   </div>
-                 
               </div>
               {% else %}
               <div class="d-flex justify-content-center flex-column align-items-center">

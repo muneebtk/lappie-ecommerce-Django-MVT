@@ -5,10 +5,10 @@
 
     <!-- Start All Title Box -->
     {% if not cart_items %}
-    <div class="" style="height: 100vh;">
-        <img src="{% static 'cart/empty-cart.png' %}" alt="">
+    <div class="mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
         <h1 class="text-center">your cart is empty</h1>
         <a href="{% url 'home' %}" class="d-flex justify-content-center"><button class="btn btn-primary">Continue Shopping ></button></a>
+        <img src="https://media.istockphoto.com/vectors/empty-shopping-bag-icon-online-business-vector-icon-template-vector-id861576608?k=20&m=861576608&s=612x612&w=0&h=UgHaPYlYrsPTO6BKKTzizGQqFgqEnn7eYK9EOA16uDs=" alt="" style="width: 50%; height:70%">  
     </div>
     {% else %}
         {% include 'user/alerts.html' %}

@@ -18,4 +18,4 @@ def home(request):
         'home_carousel3':home_carousel3,
         'new_arrivals':new_arrivals,
     }
-    return render (request,'home.html',context)
+    return render(request,'home.html',context)

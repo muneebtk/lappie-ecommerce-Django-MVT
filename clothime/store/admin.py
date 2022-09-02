@@ -25,7 +25,7 @@ class FeaturedProductAdmin(admin.ModelAdmin):
     list_display = ('id','product')
 
 class HomeCouroselAdmin(admin.ModelAdmin):
-    list_display = ('image','main_text','sub_text')
+    list_display = ('id','image','main_text','sub_text')
 
 class CouponsAdmin(admin.ModelAdmin):
     list_display=('coupon_name','limit','discount_amount')

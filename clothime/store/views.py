@@ -248,6 +248,8 @@ def remove_cart_item(request,product_id, cart_item_id):
 
 
 def cart(request,total=0,quantity=0,cart_items=None):
+    coupon1=0
+    discount_amount=0
     try:
         tax = 0
         grand_total = 0
@@ -357,6 +359,8 @@ def search(request):
         if keyword:
             products = Product.objects.order_by('is_available').filter(Q(description__icontains=keyword) | Q(product_name__icontains=keyword))
             product_count = products.count()
+    else:
+        return redirect(request.META['HTTP_REFERER'])
     context={
         'products' : products,
         'product_count': product_count,

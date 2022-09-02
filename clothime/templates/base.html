@@ -51,7 +51,12 @@
                             {% if user.id is None  %}
                                 <li><b class="text-white">Hi Guest</b></li>
                                 <li><a href="{% url 'login' %}">login</a></li>
-                                <li><a href="{% url 'register' %}">signin</a></li>
+                                <li><a href="{% url 'register' %}">signup</a></li>
+                            {% elif user.is_superadmin %}
+                                <li><b class="text-white">Hi {{ user.first_name }} !</b></li>
+                                <li><a href="{% url 'a_home' %}">Admin panel</a></li>
+                                <li><a href="{% url 'account' %}">My Account</a></li>
+                                <li><a href="{% url 'logout' %}">logout</a></li>
                             {% else %}
                                 <li><b class="text-white">Hi {{ user.first_name }} !</b></li>
                                 <li><a href="{% url 'account' %}">My Account</a></li>

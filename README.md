@@ -3,8 +3,8 @@
 </p>
 
 > An Ecommerce website for sell clothes
-> Build with Django MVT
-> APIs integrated Razorpay, Twilio
+>- Build with Django MVT
+>- APIs integrated Razorpay, Twilio
 
 ### ✨ [Demo](www.devhut.ml)
 

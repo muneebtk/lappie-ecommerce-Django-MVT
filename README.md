@@ -5,6 +5,8 @@
 > An Ecommerce website for sell clothes
 >- Build with Django MVT
 >- APIs integrated Razorpay, Twilio
+>- Product variantions
+>- User management,Product management,coupons
 
 
 

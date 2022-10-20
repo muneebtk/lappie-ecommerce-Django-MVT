@@ -13,7 +13,7 @@
 👤 **Muhammed Muneeb TK **
 
 * Github: [@muneebtk](https://github.com/muneebtk)
-* LinkedIn: [@Muhammed Muneeb](https://linkedin.com/in/Muhammed Muneeb)
+* LinkedIn: [@Muhammed Muneeb]([https://linkedin.com/in/Muhammed Muneeb](https://www.linkedin.com/in/muhammed-muneeb-61a370245))
 * Live server: www.lappie.store
 
 ## Show your support

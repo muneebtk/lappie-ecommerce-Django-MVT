@@ -6,7 +6,7 @@
 >- Build with Django MVT
 >- APIs integrated Razorpay, Twilio
 
-### ✨ [Demo](www.devhut.ml)
+
 
 ## Author
 
@@ -14,6 +14,7 @@
 
 * Github: [@muneebtk](https://github.com/muneebtk)
 * LinkedIn: [@Muhammed Muneeb](https://linkedin.com/in/Muhammed Muneeb)
+* Live server: www.lappie.store
 
 ## Show your support
 

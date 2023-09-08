@@ -9,6 +9,8 @@ from orders.models import Address
 import datetime
 import razorpay
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 
@@ -37,7 +39,7 @@ def place_order(request,total=0, quantity=0):
 
     else:
         grand_total = total+tax
-   
+
     address = 0
     orders = 0
     if request.method == 'POST':
@@ -60,6 +62,7 @@ def place_order(request,total=0, quantity=0):
                 current_date = d.strftime("%Y%m%d")
                 order_number = current_date + str(data.id)
                 request.session['order_number'] = order_number
+                request.session.save()
                 data.order_number = order_number
                 data.save()
    
@@ -82,7 +85,7 @@ def place_order(request,total=0, quantity=0):
             'grand_total': grand_total,
             'discount':discount,
                     }
-    return render(request,'orders/place_order.html',context)    
+    return render(request,'orders/place_order.html',context)
 def payments(request):
     current_user = request.user
     cart_items = CartItem.objects.filter(user=current_user)
@@ -102,17 +105,17 @@ def payments(request):
         coup.delete()
     else:
         grand_total = int(total+tax)
-    
+
     # grand_total = int(total + tax) * 100
     amount = grand_total*100
 
 
     # RazorPay
-    
+
     client = razorpay.Client(auth=(settings.RAZORPAY_ID,settings.RAZORPAY_KEY))
 
     # create order
-     
+
     response_payment = client.order.create(dict(amount=amount,currency='INR'))
     order_id = response_payment['id']
     order_status = response_payment['status']
@@ -122,18 +125,18 @@ def payments(request):
         pay.amount_paid = grand_total
         pay.order_id = order_id
         pay.save()
-    
+
         context = {
-            'payment' : response_payment,
+            'payment': response_payment,
             'current_user':current_user,
             'grand_total':grand_total,
+            'razorpay_id':settings.RAZORPAY_ID,
         }
         return render(request,'orders/payments.html',context)
     else:
         pass
-
     return render(request,'orders/payments.html')
-
+@csrf_exempt
 def payment_status(request):
     response = request.POST
     params_dict = {
@@ -147,11 +150,10 @@ def payment_status(request):
     client = razorpay.Client(auth=(settings.RAZORPAY_ID,settings.RAZORPAY_KEY))
     try:
         status = client.utility.verify_payment_signature(params_dict)
-        payment = Payment.objects.get(user=request.user,order_id = response['razorpay_order_id'])
+        payment = Payment.objects.get(user=request.user, order_id=response['razorpay_order_id'])
         payment.payment_id = response['razorpay_payment_id']
         payment.paid = True
         payment.save()
-        
         order_number = request.session['order_number']
         order = Order.objects.get(order_number=order_number)
         order.is_ordered = True
@@ -160,7 +162,7 @@ def payment_status(request):
         order.save()
 
         user = request.user
-        cart_items = CartItem.objects.filter(user=user) 
+        cart_items = CartItem.objects.filter(user=user)
         for cart_item in cart_items:
             pro_data = OrderProduct()
             pro_data.order_id = order.id
@@ -197,7 +199,7 @@ def payment_status(request):
         order.status = 'Failed'
         order.save()
         user = request.user
-        cart_items = CartItem.objects.filter(user=user) 
+        cart_items = CartItem.objects.filter(user=user)
         for cart_item in cart_items:
             product_variation = cart_items.variations.all()
             pro_data = OrderProduct()

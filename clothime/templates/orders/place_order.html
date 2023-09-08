@@ -1,8 +1,10 @@
-
-
 {% extends 'base.html' %}
 {% load static %}
+{% block head %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+{% endblock %}
 {% block body %}
     
 
@@ -28,10 +30,11 @@
     </div>
 </div>
 <!-- End All Title Box -->
-<div class="p-5 row">
- <div class="card mt-3 col-md-12 col-lg-4">
+<div class=" row d-flex ml-5">
+ <div class="card mt-5 col-md-12 col-lg-4 mr-4">
     <h5 class="card-header">Billing Address</h5>
     <div class="card-body">
+      
       <h5 class="card-title">{{ address.full_name }}</h5>
       <p class="card-text">{{ address.email }} </p>
       <p class="card-text">{{ address.full_address }} </p>
@@ -39,7 +42,7 @@
       <p class="card-text">Ph:{{ address.phone }}, Pin:{{ address.pincode }} </p>
     </div>
   </div>
-  <div class="card mt-5 col-md-12 col-lg-4">
+  <div class="card mt-5 col-md-12 col-lg-3 mr-4">
     <h5 class="card-header">Payment</h5>
     <div class="card-body">
       <h5 class="card-title">RazorPay</h5>

@@ -1,5 +1,6 @@
 
 {% load static %}
+{% load custom_filter %}
     
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@
     
 {% include 'user/header.html' %}
 
-<div class="container m-3"style="width: auto;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+<div class="container mx-auto mt-3"style="width: auto;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <div class="row">
             <div class="col-lg-4">
                <div class="profile-card-4 z-depth-3">
@@ -75,10 +76,10 @@
             <div class="col-lg-8">
                 <ul class="nav nav-pills nav-pills-primary nav-justified">
                     <li class="nav-item">
-                        <a href="{% url 'orders' %}"><button class="btn btn-primary w-50">Orders</button></a>
+                        <a href="{% url 'orders' %}"><button {% if 'orders' in request.path %}class="btn btn-info w-50"{% else %}class="btn btn-primary w-50"{% endif %} >Orders</button></a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'edit_account' user.id %}"><button class="btn btn-primary w-50">Edit</button></a>
+                        <a href="{% url 'edit_account' user.id %}"><button {% if 'edit_account' in request.path %}class="btn btn-info w-50"{% else %}class="btn btn-primary w-50"{% endif %}>Edit</button></a>
                     </li>
                 </ul>
                <div class="card z-depth-3">
@@ -109,7 +110,8 @@
                                     <td>{{x.product.product_name }}</td>
                                     <td>{{x.product.price }}</td>
                                     <td>{{x.quantity }}</td>
-                                    <td>{{x.order.order_total }}</td>
+                                    {% comment %} <td>{{x.order.order_total }}</td> {% endcomment %}
+                                    <td>{{x.product.price|multiply:x.quantity}}</td>
                                     <td>{{x.status }}</td>
                                 </tr>
                                 {% endfor %}

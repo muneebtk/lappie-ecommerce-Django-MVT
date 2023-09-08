@@ -35,19 +35,19 @@
                     <div class="modal-body d-flex align-items-center justify-content-center">
                         <div
                             style="height:20rem; display: inline-flexbox ; justify-content: center; align-items: center;">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Razorpay_logo.svg" alt=""
-                                style="height:5rem;width: 15rem;">
+                            {% comment %} <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Razorpay_logo.svg" alt=""
+                                style="height:5rem;width: 15rem;">  {% endcomment %}
                             <i>&nbsp;&nbsp;&nbsp;</i>
                             <h5 style="font-style:italic ;color:rgb(14, 11, 46)">Amount:{{ grand_total }} /- </h4><br>
                                 {% if payment %}
                                 <form action="{% url 'payment_status' %}" method="POST">
                                     {% csrf_token %}
                                     <script src="https://checkout.razorpay.com/v1/checkout.js"
-                                        data-key="rzp_test_ajO5U8wp1guUHB" data-amount="{{ payment.amount }}"
+                                        data-key="{{razorpay_id}}" data-amount="{{ payment.amount }}"
                                         data-currency="{{ payment.currency }}" data-order_id="{{ payment.id }}"
                                         data-buttontext="Pay with Razorpay" data-name="Lappie"
                                         data-description="Purchase, what is on your mind"
-                                        data-image="https://example.com/your_logo.jpg"
+                                        {% comment %} data-image="https://example.com/your_logo.jpg" {% endcomment %}
                                         data-prefill.name="{{ current_user.name }}"
                                         data-prefill.email="{{ current_user.email }}" data-theme.color="#F37254">
                                         </script>

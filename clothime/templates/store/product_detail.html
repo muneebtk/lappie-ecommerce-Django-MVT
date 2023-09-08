@@ -29,8 +29,12 @@
                             
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active"> <img class="d-block w-100" src="{{ single_product.images.url }}" alt="First slide"> </div>
+                            {% if single_product.image1 %}
                             <div class="carousel-item"> <img class="d-block w-100" src="{{ single_product.image1.url }}" alt="Second slide"> </div>
+                            {% endif %}
+                            {% if single_product.image2 %}
                             <div class="carousel-item"> <img class="d-block w-100" src="{{ single_product.image2.url }}" alt="Third slide"> </div>
+                            {% endif %}
                         </div>
 
                         <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev"> 
@@ -45,12 +49,16 @@
                             <li data-target="#carousel-example-1" data-slide-to="0" class="active">
                                 <img class="d-block w-100 img-fluid" src="{{ single_product.images.url }}" alt="" />
                             </li>
+                            {% if single_product.image1 %}
                             <li data-target="#carousel-example-1" data-slide-to="1">
                                 <img class="d-block w-100 img-fluid" src="{{ single_product.image1.url }}" alt="" />
                             </li>
+                            {% endif %}
+                            {% if single_product.image2 %}
                             <li data-target="#carousel-example-1" data-slide-to="2">
                                 <img class="d-block w-100 img-fluid" src="{{ single_product.image2.url }}" alt="" />
                             </li>
+                            {% endif %}
                         </ol>
                     </div>
                 </div>

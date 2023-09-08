@@ -11,7 +11,9 @@ def home(request):
         home_carousel2 = HomeCarousel.objects.order_by('-id').all()[1]
         home_carousel3 = HomeCarousel.objects.order_by('-id').all()[2]
     except:
-        pass
+        home_carousel1=None
+        home_carousel2=None
+        home_carousel3=None
     context = {
         'categories' : category,
         'featured': featured,

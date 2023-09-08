@@ -132,10 +132,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS   = [
-#     os.path.join(BASE_DIR,'static')
-#  ] 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+ ] 
 
 # media file configuration
 
@@ -149,14 +149,16 @@ AWS_S3_OBJECT_PARAMETERS = {
   'CacheControl':'max-age=86400',
 }
 AWS_S3_FILE_OVERWRITE = True
-AWS_DEFAULT_ACL = 'public-read'
+# AWS_DEFAULT_ACL = 'public-read'
+AWS_DEFAULT_ACL = None
 AWS_LOCATION = 'static'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_DIRS=[
+STATICFILES_DIRS = [
   'static',
 ]
-STATIC_URL = 'http://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_REGION_NAME = 'ap-south-1'
+# STATIC_URL = 'http://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 from storages.backends.s3boto3 import S3Boto3Storage
 class MediaStorage(S3Boto3Storage):
   location = 'media'

@@ -58,9 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CORS_ALLOWED_ORIGINS = [
-    "http://54.163.86.221",  # Specify the allowed origin(s)
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'clothime.urls'
 

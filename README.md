@@ -2,11 +2,13 @@
 <p>
 </p>
 
-> An Ecommerce website for sell clothes
->- Build with Django MVT
->- APIs integrated Razorpay, Twilio
->- Product variantions
->- User management,Product management,coupons
+>-Developed a feature-rich eCommerce platform using the Django MVT architecture.
+>-Implemented payment gateway integration with Razorpay to enable seamless and secure online transactions.
+>-Integrated Twilio for OTP-based user authentication to enhance account security and ensure seamless user verification.
+>-Designed and managed product variations (e.g., size, color, and style) to provide a personalized shopping experience.
+>-Built comprehensive user and product management systems for efficient handling of customer accounts, product inventory, and administrative tasks.
+>-Added coupon management functionality to support promotional campaigns and improve user engagement.
+
 
 
 

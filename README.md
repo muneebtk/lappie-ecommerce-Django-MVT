@@ -2,7 +2,7 @@
 <p>
 </p>
 
-* * Developed a feature-rich eCommerce platform using the Django MVT architecture.
+* Developed a feature-rich eCommerce platform using the Django MVT architecture.
 * Implemented payment gateway integration with Razorpay to enable seamless and secure online transactions.
 * Integrated Twilio for OTP-based user authentication to enhance account security and ensure seamless user verification.
 * Designed and managed product variations (e.g., size, color, and style) to provide a personalized shopping experience.
